@@ -1,16 +1,27 @@
-from django.urls import path
-from django.conf.urls.static import static
-from django.conf import settings
-from . import views
-urlpatterns = [
-    path('',views.welcome_page,name='welcome'),
-    path('home/',views.home,name='home'),
-    path('about/',views.page_about,name='about'),
-    path('homeabout/',views.base_about,name='baseabout'),
-    path('newpost/',views.newpost,name='create_post'),
-    path('login/',views.user_login,name='login'),
-    path('register/',views.user_register,name='register'),
-    path('logout/',views.user_logout,name='logout'),
+"""BlogWeb URL Configuration
 
-    
-]+static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)+static(settings.MEDIA_URL,document_root=settings.MEDIA_ROOT)
+The `urlpatterns` list routes URLs to views. For more information please see:
+    https://docs.djangoproject.com/en/4.1/topics/http/urls/
+Examples:
+Function views
+    1. Add an import:  from my_app import views
+    2. Add a URL to urlpatterns:  path('', views.home, name='home')
+Class-based views
+    1. Add an import:  from other_app.views import Home
+    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')
+Including another URLconf
+    1. Import the include() function: from django.urls import include, path
+    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+"""
+from django.conf.urls import handler404, handler500
+from django.contrib import admin
+from django.urls import include, path
+
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('',include('BlogApp.urls')),
+]
+
+handler404 = 'BlogApp.views.handler404'
+handler500 = 'BlogApp.views.handler500'
+
