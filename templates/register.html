@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+   {% load static %}
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Login</title>
+      <link rel="stylesheet" href="{% static 'css/style.css' %}">
+      <link rel="stylesheet" href="{% static 'css/login.css' %}">
+   </head>
+   <body>
+      <!-- NAVBAR CARD -->
+      <header class="box-shadow">
+         <div class="section logo">
+            <span class="white">Blog</span><span class="green">-G</span>
+         </div>
+         <div class="section">
+            <ul>
+               <li><a href="{% url 'welcome' %}">Blog</a></li>
+               <li><a href="{% url 'about' %}">About</a></li>
+               <li><a href="{% url 'login' %}">login</a></li>
+            </ul>
+         </div>
+      </header>
+      <!-- LOGIN CARD -->
+      <div >
+         <img  class="back-png" src="{% static 'images/welcome-back.png' %}" alt="background" >
+      </div>
+      <div class="login-hover">
+         <div class="login-box">
+            {% if error %}
+            <p style="color: green;">{{ error }}</p>
+            {% endif %}
+            <form method="post" action="">
+               {% csrf_token %}
+               <div class="user-box">
+                  <input required="" name="username" id="username" required type="text">
+                  <label for="username">Username</label>
+               </div>
+               <div class="user-box">
+                  <input required="" name="email" required type="email">
+                  <label for="email">Email</label>
+               </div>
+               <div class="user-box">
+                  <input name="password1" id="password1" required type="password">
+                  <label for="password1">Password</label>
+               </div>
+               <div class="user-box">
+                  <input name="password2" id="password2" required type="password">
+                  <label for="password2">Conform Password</label>
+               </div>
+               <center>
+                  <button type="submit">
+                  Register
+                  <span></span>
+                  </button>
+               </center>
+            </form>
+         </div>
+      </div>
+   </body>
+</html>
